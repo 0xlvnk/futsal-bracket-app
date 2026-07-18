@@ -10,46 +10,89 @@
   <header class="topbar">
     <div class="container">
       <h1>Futsal Bracket App</h1>
-      <p class="subtitle">Dashboard awal untuk melihat dan menambah data tim futsal</p>
+      <p class="subtitle">Dashboard awal untuk tim dan pertandingan futsal</p>
     </div>
   </header>
 
   <main class="container">
     <section class="card hero-card">
       <div>
-        <h2>Manajemen Tim</h2>
-        <p>Tambah tim baru dan lihat daftar tim yang sudah masuk ke database.</p>
+        <h2>Manajemen Turnamen</h2>
+        <p>Tambah tim, buat pertandingan, dan lihat data turnamen dari satu halaman.</p>
       </div>
-      <button id="refreshBtn" class="btn">Refresh Data</button>
+      <button id="refreshBtn" class="btn">Refresh Semua</button>
     </section>
 
-    <section class="card">
-      <h3>Tambah Tim</h3>
-      <form id="teamForm" class="team-form">
-        <div class="form-group">
-          <label for="teamName">Nama Tim</label>
-          <input type="text" id="teamName" name="name" placeholder="Contoh: Garuda FC" required>
-        </div>
+    <section class="grid-two">
+      <div class="card">
+        <h3>Tambah Tim</h3>
+        <form id="teamForm" class="team-form">
+          <div class="form-group">
+            <label for="teamName">Nama Tim</label>
+            <input type="text" id="teamName" name="name" placeholder="Contoh: Garuda FC" required>
+          </div>
 
-        <div class="form-group">
-          <label for="teamCategory">Kategori</label>
-          <input type="text" id="teamCategory" name="category" placeholder="Contoh: Senior" required>
-        </div>
+          <div class="form-group">
+            <label for="teamCategory">Kategori</label>
+            <input type="text" id="teamCategory" name="category" placeholder="Contoh: Senior" required>
+          </div>
 
-        <button type="submit" class="btn">Simpan Tim</button>
-      </form>
+          <button type="submit" class="btn">Simpan Tim</button>
+        </form>
 
-      <div id="formMessage" class="status hidden"></div>
-    </section>
-
-    <section class="card">
-      <div class="section-head">
-        <h3>Daftar Tim</h3>
-        <span id="teamCount" class="badge">0 tim</span>
+        <div id="formMessage" class="status hidden"></div>
       </div>
 
-      <div id="statusMessage" class="status">Memuat data tim...</div>
-      <div id="teamList" class="team-list"></div>
+      <div class="card">
+        <h3>Tambah Match</h3>
+        <form id="matchForm" class="team-form">
+          <div class="form-group">
+            <label for="roundName">Round</label>
+            <input type="text" id="roundName" placeholder="Contoh: Semi Final" required>
+          </div>
+
+          <div class="form-group">
+            <label for="matchCode">Match Code</label>
+            <input type="text" id="matchCode" placeholder="Contoh: SF-1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="team1Select">Team 1</label>
+            <select id="team1Select" required></select>
+          </div>
+
+          <div class="form-group">
+            <label for="team2Select">Team 2</label>
+            <select id="team2Select" required></select>
+          </div>
+
+          <button type="submit" class="btn">Simpan Match</button>
+        </form>
+
+        <div id="matchMessage" class="status hidden"></div>
+      </div>
+    </section>
+
+    <section class="grid-two">
+      <div class="card">
+        <div class="section-head">
+          <h3>Daftar Tim</h3>
+          <span id="teamCount" class="badge">0 tim</span>
+        </div>
+
+        <div id="statusMessage" class="status">Memuat data tim...</div>
+        <div id="teamList" class="team-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-head">
+          <h3>Daftar Match</h3>
+          <span id="matchCount" class="badge">0 match</span>
+        </div>
+
+        <div id="matchStatusMessage" class="status">Memuat data match...</div>
+        <div id="matchList" class="team-list"></div>
+      </div>
     </section>
   </main>
 

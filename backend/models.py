@@ -66,4 +66,3 @@ class Admin(Base):
     google_id = Column(String(100), unique=True, nullable=False)
     email = Column(String(150), unique=True, nullable=False)
     name = Column(String(150), nullable=True)
-    
