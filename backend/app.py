@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from database import init_db, SessionLocal
 from models import Team
 
@@ -7,6 +7,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    return render_template("index.html")
+
+
+@app.route("/api")
+def api_home():
     return jsonify({
         "message": "Futsal Bracket API is running"
     })

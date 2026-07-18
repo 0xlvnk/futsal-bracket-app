@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futsal Bracket App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>Futsal Bracket App</h1>
+      <p class="subtitle">Dashboard awal untuk melihat data tim futsal</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card hero-card">
+      <div>
+        <h2>Daftar Tim</h2>
+        <p>Data di bawah ini diambil langsung dari endpoint backend <code>/teams</code>.</p>
+      </div>
+      <button id="refreshBtn" class="btn">Refresh Data</button>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h3>Teams</h3>
+        <span id="teamCount" class="badge">0 tim</span>
+      </div>
+
+      <div id="statusMessage" class="status">Memuat data tim...</div>
+
+      <div id="teamList" class="team-list"></div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
