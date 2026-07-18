@@ -10,27 +10,45 @@
   <header class="topbar">
     <div class="container">
       <h1>Futsal Bracket App</h1>
-      <p class="subtitle">Dashboard awal untuk melihat data tim futsal</p>
+      <p class="subtitle">Dashboard awal untuk melihat dan menambah data tim futsal</p>
     </div>
   </header>
 
   <main class="container">
     <section class="card hero-card">
       <div>
-        <h2>Daftar Tim</h2>
-        <p>Data di bawah ini diambil langsung dari endpoint backend <code>/teams</code>.</p>
+        <h2>Manajemen Tim</h2>
+        <p>Tambah tim baru dan lihat daftar tim yang sudah masuk ke database.</p>
       </div>
       <button id="refreshBtn" class="btn">Refresh Data</button>
     </section>
 
     <section class="card">
+      <h3>Tambah Tim</h3>
+      <form id="teamForm" class="team-form">
+        <div class="form-group">
+          <label for="teamName">Nama Tim</label>
+          <input type="text" id="teamName" name="name" placeholder="Contoh: Garuda FC" required>
+        </div>
+
+        <div class="form-group">
+          <label for="teamCategory">Kategori</label>
+          <input type="text" id="teamCategory" name="category" placeholder="Contoh: Senior" required>
+        </div>
+
+        <button type="submit" class="btn">Simpan Tim</button>
+      </form>
+
+      <div id="formMessage" class="status hidden"></div>
+    </section>
+
+    <section class="card">
       <div class="section-head">
-        <h3>Teams</h3>
+        <h3>Daftar Tim</h3>
         <span id="teamCount" class="badge">0 tim</span>
       </div>
 
       <div id="statusMessage" class="status">Memuat data tim...</div>
-
       <div id="teamList" class="team-list"></div>
     </section>
   </main>

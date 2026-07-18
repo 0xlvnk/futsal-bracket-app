@@ -2,6 +2,15 @@ const teamList = document.getElementById("teamList");
 const statusMessage = document.getElementById("statusMessage");
 const teamCount = document.getElementById("teamCount");
 const refreshBtn = document.getElementById("refreshBtn");
+const teamForm = document.getElementById("teamForm");
+const formMessage = document.getElementById("formMessage");
+const teamNameInput = document.getElementById("teamName");
+const teamCategoryInput = document.getElementById("teamCategory");
+
+function showFormMessage(message, type) {
+  formMessage.textContent = message;
+  formMessage.className = `status ${type}`;
+}
 
 async function loadTeams() {
   statusMessage.textContent = "Memuat data tim...";
@@ -21,7 +30,7 @@ async function loadTeams() {
       statusMessage.textContent = "Belum ada tim di database.";
       teamList.innerHTML = `
         <div class="empty-state">
-          Belum ada data tim. Tambahkan tim lewat endpoint POST /teams dulu.
+          Belum ada data tim. Tambahkan tim melalui form di atas.
         </div>
       `;
       return;
@@ -46,6 +55,40 @@ async function loadTeams() {
     `;
   }
 }
+
+teamForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const name = teamNameInput.value.trim();
+  const category = teamCategoryInput.value.trim();
+
+  if (!name || !category) {
+    showFormMessage("Nama tim dan kategori wajib diisi.", "error");
+    return;
+  }
+
+  try {
+    const response = await fetch("/teams", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, category })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Gagal menambahkan tim");
+    }
+
+    showFormMessage("Tim berhasil ditambahkan.", "success");
+    teamForm.reset();
+    await loadTeams();
+  } catch (error) {
+    showFormMessage(error.message, "error");
+  }
+});
 
 refreshBtn.addEventListener("click", loadTeams);
 loadTeams();
